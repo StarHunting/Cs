@@ -9,7 +9,7 @@ public class User implements Serializable {
 
     public User() {
     }
-    //注释
+
     public User(String name, String age) {
         this.name = name;
         this.age = age;
