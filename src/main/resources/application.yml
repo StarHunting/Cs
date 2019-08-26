@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pet?serverTimezone=GMT
+    username: root
+    password: root
+
+  data:
+    mongodb:
+      uri: mongodb://192.168.40.131:27017/test?AutoConnectRetry=true
+
+
+  redis:
+    host: 192.168.40.131
+    port: 6379
+    cluster:
+      nodes:
+        192.168.40.131:6379,192.168.40.131:6380,192.168.40.131:6381
+    sentinel:
+      master: mymaster
+      nodes: 192.168.40.131:26379
+    password: root
+    database: 0
+    timeout: 60s  # 数据库连接超时时间，2.0 中该参数的类型为Duration，这里在配置的时候需要指明单位
+    # 连接池配置，2.0中直接使用jedis或者lettuce配置连接池
+    jedis:
+      pool:
+        max-idle: 50        # 最大空闲连接数
+        min-idle: 10        # 最小空闲连接数
+        max-wait:  -1s        # 等待可用连接的最大时间，负数为不限制
+        max-active: -1        # 最大活跃连接数，负数为不限制
+
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/resources/,classpath:/static/layui/,classpath:/static/,classpath:/html/,classpath:/template/
+
+  thymeleaf:
+    encoding: utf-8
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
